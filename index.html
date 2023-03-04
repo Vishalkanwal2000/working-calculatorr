@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+        <!-- <link rel="stylesheet" href="style.css"> -->
+    </head>
+    <body> 
+        <style>
+            .container {
+	max-width: 360px;
+	box-shadow: 0px 0px 22px 8px gray;
+}
+#result {
+    text-align: right;
+    height: 50px;
+    line-height: 30px;
+    padding: 4% 2%;
+    font-size: 25px;
+    font-family: 'courier';
+}
+.bttns {
+    display: grid;
+    border: 1px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.bttns div {
+    border-top: 1px solid #999;
+}
+.btn {
+    border: .5px solid gray;
+    line-height: 100px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+#equal {
+    background-color: dodgerblue;
+    color: white;
+    font-size: 30px;
+}
+#clear{
+    background-color: tomato;
+    color: white;
+}
+.btn:hover {
+    background-color: lightgray;
+}
+#equal:hover{
+    background-color: blue;
+}
+#clear:hover{
+    background-color: red;
+}
+
+        </style>
+        <section>
+          <div class="container">
+            <div id="result">0</div>
+            <div class="bttns">
+              <div class="btn" id="clear">AC</div>
+              <div class="btn">.</div>
+              <div class="btn">0</div>
+              <div class="btn">/</div>
+              <div class="btn">1</div>
+              <div class="btn">2</div>
+              <div class="btn">3</div>
+              <div class="btn">*</div>
+              <div class="btn">4</div>
+              <div class="btn">5</div>
+              <div class="btn">6</div>
+              <div class="btn">+</div>
+              <div class="btn">7</div>
+              <div class="btn">8</div>
+              <div class="btn">9</div>
+              <div class="btn">-</div>
+            </div>
+            <div>
+              <div id="equal" class="btn"><strong>=</strong></div>
+            </div>
+          </div>
+        </section>
+    </body>
+<!-- <script src="index.js"></script> -->
+<script>
+    let result = document.getElementById("result");
+let buttons = Array.from(document.getElementsByClassName("btn"));
+
+buttons.map((button) => {
+  button.addEventListener("click", (e) => {
+    if (
+      result.innerText === "0" &&
+      e.target.innerText != "/" &&
+      e.target.innerText != "*"
+    ) {
+      result.innerText = "";
+    }
+    if (e.target.innerText === "AC") {
+      result.innerText = "";
+    } else if (e.target.innerText === "=") {
+      try {
+        result.innerText = eval(result.innerText);
+      } catch {
+        result.innerText = "ERROR.";
+      }
+    } else {
+      result.innerText += e.target.innerText;
+    }
+  });
+});
+
+</script>
+</html>
